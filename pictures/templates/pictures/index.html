@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<div class="navbar">
+    <a href="/accounts/logout">Kijelentkezés</a>
+</div>
+
+<div class="container">
+  {% if perms.pictures.view_jpg %}
+    {% for jpg in jpgs %}
+      <div class="polaroid">
+        {% with '/img/'|add:jpg.full_title as imagePath %}
+          <img src="{% static imagePath %}"  alt="{{ jpg.full_title }}" width="100%"/>
+          <div class="description">
+            <p> {{ jpg.description }} </p>
+          </div>
+        {% endwith %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if perms.pictures.view_png %}
+    {% for png in pngs %}
+      <div class="polaroid">
+        {% with '/img/'|add:png.full_title as imagePath %}
+          <img src="{% static imagePath %}"  alt="{{ png.full_title }}" width="100%"/>
+          <div class="description">
+            <p> {{ png.description }} </p>
+          </div>
+        {% endwith %}
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
