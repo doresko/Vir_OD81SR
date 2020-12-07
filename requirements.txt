@@ -1,0 +1,4 @@
+-i https://pypi.org/simple
+django-jenkins==0.110.0
+django==1.11.29
+pytz==2020.4

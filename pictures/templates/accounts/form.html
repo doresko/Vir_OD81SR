@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+  margin: auto;
+  background-color: #555555;
+}
+
+form {
+  width: 60%;
+	border: 3px solid #f1f1f1;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: ghostwhite;
+}
+
+input[type=text], input[type=password], input[type=email] {
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  border-radius: 5px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  width: 60%;
+  padding: 16px;
+  text-align: center;
+  margin: auto;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+	<form method = 'POST' action= '' enctype = "multipart/form-data">
+    {% csrf_token %}
+    {% if title == "Bejelentkezés" %}
+      <h1>Bejelentkezés</h1><br><br>
+    {% endif %}
+    {% if title == "Regisztráció" %}
+      <h1>Regisztráció</h1><br><br>
+    {% endif %}
+		{{form.as_p }}
+		<br>
+		<button class="submit" type="submit">
+			{{ title }}
+		</button>
+
+		<div class="text-center">
+			{% if title == "Bejelentkezés" %}<a class="text-secondary" href = "/accounts/register">Regisztráció</a>{% endif %}
+			{% if title == "Regisztráció" %}<a class="text-secondary" href = "/accounts/login">Bejelentkezés</a>{% endif %}
+			<br>
+		</div>
+	</form>
+</div>
+
+</body>
+</html>
